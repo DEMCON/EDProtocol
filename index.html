@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.53" />
+    <meta name="description" content="">
+
+
+    <link rel="shortcut icon" href="https://demcon.github.io/EDProtocol/images/favicon.png" type="image/x-icon" />
+<link rel="icon" href="https://demcon.github.io/EDProtocol/images/favicon.png" type="image/x-icon" />
+    <title>Embedded Debugger :: Embedded Debugger</title>
+
+    
+    <link href="https://demcon.github.io/EDProtocol/css/nucleus.css?1548248005" rel="stylesheet">
+    <link href="https://demcon.github.io/EDProtocol/css/fontawesome-all.min.css?1548248005" rel="stylesheet">
+    <link href="https://demcon.github.io/EDProtocol/css/hybrid.css?1548248005" rel="stylesheet">
+    <link href="https://demcon.github.io/EDProtocol/css/featherlight.min.css?1548248005" rel="stylesheet">
+    <link href="https://demcon.github.io/EDProtocol/css/perfect-scrollbar.min.css?1548248005" rel="stylesheet">
+    <link href="https://demcon.github.io/EDProtocol/css/auto-complete.css?1548248005" rel="stylesheet">
+    <link href="https://demcon.github.io/EDProtocol/css/theme.css?1548248005" rel="stylesheet">
+    <link href="https://demcon.github.io/EDProtocol/css/hugo-theme.css?1548248005" rel="stylesheet">
+    
+      <link href="https://demcon.github.io/EDProtocol/css/theme-blue.css?1548248005" rel="stylesheet">
+    
+
+    <script src="https://demcon.github.io/EDProtocol/js/jquery-2.x.min.js?1548248005"></script>
+
+    <style type="text/css">
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <img src="https://demcon.github.io/EDProtocol//demcon.png">
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="https://demcon.github.io/EDProtocol/js/lunr.min.js?1548248005"></script>
+<script type="text/javascript" src="https://demcon.github.io/EDProtocol/js/auto-complete.js?1548248005"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/demcon.github.io\/EDProtocol\/";
+    
+</script>
+<script type="text/javascript" src="https://demcon.github.io/EDProtocol/js/search.js?1548248005"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/" title="Debug protocol V0.7" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/">
+          Debug protocol V0.7
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/" title="Global message layout" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/">
+          Global message layout
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/getinfo/" title="Get Info (&#39;I&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/getinfo/">
+          Get Info (&#39;I&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/getversion/" title="Get version (&#39;V&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/getversion/">
+          Get version (&#39;V&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/writeregister/" title="Write Register (&#39;W&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/writeregister/">
+          Write Register (&#39;W&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/queryregister/" title="Query Register (&#39;Q&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/queryregister/">
+          Query Register (&#39;Q&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/configchannel/" title="Config Channel (&#39;C&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/configchannel/">
+          Config Channel (&#39;C&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/decimation/" title="Decimation (&#39;D&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/decimation/">
+          Decimation (&#39;D&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/resettime/" title="Reset Time (&#39;T&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/resettime/">
+          Reset Time (&#39;T&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/readchanneldata/" title="Read Channel Data (&#39;R&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/readchanneldata/">
+          Read Channel Data (&#39;R&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/debugstring/" title="Debug String (&#39;S&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/debugstring/">
+          Debug String (&#39;S&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+
+        
+        <div id="body-inner">
+          
+
+        
+
+<span id="sidebar-toggle-span">
+<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
+</span>
+
+ 
+
+
+<h1 id="introduction">Introduction</h1>
+
+<p>There are 4 areas at which embedded software needs debugging:</p>
+
+<ul>
+<li><p>Hardware testing<br />
+For testing specific hardware, we need to write hardware-drivers, through which we can test the hardware. Often we need special test-software that use these drivers.</p></li>
+
+<li><p>Software debugging<br />
+The development environment is often sufficient for debugging the software. It sometimes also has utilities for standard hardware testing (like default I/O-ports of a µC).</p></li>
+
+<li><p>Application debugging<br />
+At application-level we even need more sophisticated debugging-tools. In general we need plots of certain internal units (like pressure, temperature, motor-positions, servo-errors, etc) that can be graphically plotted simultaneously.</p></li>
+
+<li><p>Production testing<br />
+Production testing is close related to hardware testing. Yet it requires a higher degree of automation with growing production volumes.</p></li>
+</ul>
+
+<p>This document describes a general debug-protocol that can be used in all areas, being least applicable for software debugging. It needs implementation at both embedded side as PC-side. The debug-protocol can run over several types of busses, like CAN-bus, serial, Ethernet etc. It is a binary protocol with a message structure.</p>
+	
+  
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+		
+			<a class="nav nav-next" href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/" title="Debug protocol V0.7" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="https://demcon.github.io/EDProtocol/js/clipboard.min.js?1548248005"></script>
+    <script src="https://demcon.github.io/EDProtocol/js/perfect-scrollbar.min.js?1548248005"></script>
+    <script src="https://demcon.github.io/EDProtocol/js/perfect-scrollbar.jquery.min.js?1548248005"></script>
+    <script src="https://demcon.github.io/EDProtocol/js/jquery.sticky.js?1548248005"></script>
+    <script src="https://demcon.github.io/EDProtocol/js/featherlight.min.js?1548248005"></script>
+    <script src="https://demcon.github.io/EDProtocol/js/html5shiv-printshiv.min.js?1548248005"></script>
+    <script src="https://demcon.github.io/EDProtocol/js/highlight.pack.js?1548248005"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://demcon.github.io/EDProtocol/js/modernizr.custom.71422.js?1548248005"></script>
+    <script src="https://demcon.github.io/EDProtocol/js/learn.js?1548248005"></script>
+    <script src="https://demcon.github.io/EDProtocol/js/hugo-learn.js?1548248005"></script>
+
+    <link href="https://demcon.github.io/EDProtocol/mermaid/mermaid.css?1548248005" type="text/css" rel="stylesheet" />
+    <script src="https://demcon.github.io/EDProtocol/mermaid/mermaid.js?1548248005"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>
+

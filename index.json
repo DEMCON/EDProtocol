@@ -1,0 +1,99 @@
+[
+{
+	"uri": "https://demcon.github.io/EDProtocol/debug-protocol-v0.7/",
+	"title": "Debug protocol V0.7",
+	"tags": [],
+	"description": "",
+	"content": "Protocol description of Debug protocol version 0.7\n"
+},
+{
+	"uri": "https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/getinfo/",
+	"title": "Get Info (&#39;I&#39;)",
+	"tags": [],
+	"description": "",
+	"content": "  cmd-ID cmd-data    PC -\u0026gt; uC   \u0026lsquo;I\u0026rsquo; = 0x49  -\n   PC \u0026lt;- uC   \u0026lsquo;I\u0026rsquo; = 0x49   type_0   size_0   [RS]   \u0026hellip;   [type_n]   [size_n]   ​\n type_n:\n0x00 = memory alignment (given in size_n; typically 1 or 4; example: memory alignment = 4 -\u0026gt; addresses are a multiple of 4)\n0x01 = pointer\n0x02 = bool\n0x03 = char\n0x04 = short\n0x05 = int\n0x06 = long\n0x07 = float\n0x08 = double\n0x09 = long double\n0x0A = time-stamp units in µs (uses 4 bytes for size_n!)\n size_n = size of ‘type denoted by type_x’ in bytes\nnote: for type_n = 0x0A -\u0026gt; 4 bytes, LSB first, MSB last\n RS = record separator (0x33)\n by using a record separator, types can be added in the future, or omitted by the slave without problems\n  "
+},
+{
+	"uri": "https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/",
+	"title": "Global message layout",
+	"tags": [],
+	"description": "",
+	"content": " Global message layout  STX µC msg-ID cmd cmd-data CRC ETX   1 byte  1 byte  1 byte  1 byte  \u0026hellip; bytes  1 byte  1 byte   ​\nSTX,ETX, escape character Detecting and differentiating separate messages is done using the STX and ETX.\nImplementation can use the following easy rules: * STX = 0x55 * ETX = 0xAA * Receive STX -\u0026gt; ignore all previous packet-bytes * Receive ETX -\u0026gt; packet = all bytes since last STX * Message = all bytes between last STX and ETX\nEach byte in the message can have any binary value.\nIn order to uniquely identify STX and ETX, we use an escape character on the message-data to prevent STX and ETX from being sent inside the message-data.\nImplementation can follow these simple rules: * Escape char = 0x66 * Encode message-bytes before sending (XOR with escape char): * Replace message-byte “0x55” by 2 bytes: “0x66 0x33” * Replace message-byte “0xAA” by 2 bytes: “0x66 0xCC” * Replace message-byte “0x66” by 2 bytes: “0x66 0x00” * Decode received message-bytes (XOR with escape char):\nreplace 2 bytes “0x66 0x??” by 1 byte: “0x66 XOR 0x??”\nThe STX, ETX and escape-char are chosen to have a minimum of equal consecutive bits. This minimises bit-stuffing in cases where the transport layer makes use of this (like CAN-bus or wireless communication).\nµC Since we can have a setup with more than 1 µC, each message starts with a µC-id which identifies to which µC the message is related.\nAn id of 0xFF is reserved for accessing all µCs simultaneously. The highest bit identifies the direction: * bit 7 = 1: PC -\u0026gt; µC * bit 7 = 0: PC \u0026lt;- µC\nMsg-ID All messages sent from the PC are given a successive msg-ID.\nThis ID is used to ACK the messages by the slaves.\nThe slaves ACK each message, by sending at least: * µC * msg-ID * cmd\nMsg-ID = 0 is not ACK by the slaves.\nThis msg-ID can be used by the PC when sending a cmd to all slaves at once.\nHowever, by using a msg-ID != 0 with a global cmd, makes all present µCs ACK the message, which can be a safer route.\nMessages sent by the µC are not ACK by the PC, and are therefore sent with msg-ID = 0\nCmd and cmd-data Each message has a cmd, followed by cmd-data. The cmd identifies the type of message. The amount and type of cmd-data differs per cmd, and can also be 0. The cmds are defined separately.\nCommand-data may consist of several parameter-values. These may be separated by a ‘record separator’ RS = 0x33. If a record-separator is used, it is described in the command.\nError-checking Every message has a CRC-check in order to detect transmission failures. The STX and ETX are excluded from the CRC-calculations (if STX or ETX are not received correctly, the message is lost anyway, since we are not able to detect it anyway). We choose an 8-bit CRC with the following polynomial (CRC-8 Dallas/Maxim):\nCRC = x8 + x5 + x4 + x0\nIf a CRC-check fails, the message is simply discarded. If a message is important, it is indicated in the protocol that the receiver should send a response. If such a response times out at the sender-side, it can be resent. After a multiple or time-outs, the receiver can be indicated as ‘connection lost’.\nDebug-channels Each µC will have 16 so called ‘debug-channels’. A debug-channel is capable of sending a 1-dimensional value (for example a bool, byte, int or double) from the µC to the PC. Each debug-channel can be independently configured through the protocol. This is done by the PC. The PC determines what variable is sent over which channel, and when.\nAt start-up, we must first initialise/synchronise the debugger softwares on both sides of the communication channel (i.e. embedded sw and pc sw). The following information is exchanged: – version of the debugger software – version of the application software – sizes and byte orientation of the basic types\nAfter that, the pc software can configure and enable/disable debug-channels. The commands use a ‘send-response’ format to ensure safe communication. After enabling, the embedded sw send data as configured without being queried or ack. This one-way sending minimises overhead, leading to maximum throughput. Furthermore, it is assumed that message losses are not critical for debug-data. All this is illustrated by the sequence diagram below.\nByte ordering Multi-byte values are sent in ‘little endian’ ordering (standard Intel format), i.e. ‘least significant byte’ first. So a 4-byte value 0x12345678 is sent as {0x78, 0x56, 0x34, 0x12}.\nIn multiple commands a Name is send, this name are send using the UTF-8 encoding.\nEncoding Control byte The control byte is used in multiple commands, such as writeregister and contains information about the register, e.g. read/write, deref, etc.\nbit7…bit4: base-address to use (bit7=read/write, bit6=hand/Simulink, bit4=offset/index): \u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;0000: read hand-written variable, add offset to base-address (‘\u0026amp;theApp’)\n\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;0001: read hand-written variable, offset is index of hard-coded variable\n\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;0100: read Simulink signal, add offset to Simulink signal base address (‘\u0026amp;g_B’)\n\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;0101: read Simulink signal, offset is index of hard-coded Simulink-output \u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;0111: read from to absolute memory-address \u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;1000: write to hand-written variable, add offset to base-address (‘\u0026amp;theApp’)\n\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;1001: write to hand-written variable, offset is index of hard-coded variable\n\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;1100: write to Simulink-parameter, add offset to parameter base address (‘\u0026amp;g_P’)\n\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;1101: write to Simulink-parameter, offset is index of hard-coded Simulink-input\n\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;1111: write to absolute memory-address\nbit3…bit0: pointer-depth, how deep to dereference the offset-address examples:\n\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;0x00: memory-location contains variable value\n\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;0x01: memory-location contains single pointer\n\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;0x02: memory-location contains double pointer (dereference twice)\n"
+},
+{
+	"uri": "https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/getversion/",
+	"title": "Get version (&#39;V&#39;)",
+	"tags": [],
+	"description": "",
+	"content": "  cmd-ID cmd-data    PC -\u0026gt; uC   \u0026lsquo;V\u0026rsquo; = 0x56  -\n   PC \u0026lt;- uC   \u0026lsquo;V\u0026rsquo; = 0x56   dv3   \u0026hellip;   dv0   av3   \u0026hellip;   av0   nmSize   nmN   \u0026hellip;   nm0   snSize   [snN]   [\u0026hellip;]   [sn0]   ​\n dv3…dv0 = debug library/protocol version (dv1, dv0 = LSB, MSB)\nexample: V2.3.1113 -\u0026gt; dv3 = 0x02, dv2 = 0x03, dv1 = 0x59, dv0 = 0x04 av3…av0 = application version (same format as dv3…dv0) nmSize: number of bytes that follow for the name (nmN…nm0)\nnmN…nm0 = node-name (string which can have a variable length) snSize: number of bytes that follow for the serial-nr (snN…sn0)\nsnN…sn0 = serial number (string which can have a variable length)\nthe serial number may be omitted  "
+},
+{
+	"uri": "https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/writeregister/",
+	"title": "Write Register (&#39;W&#39;)",
+	"tags": [],
+	"description": "",
+	"content": "  cmd-ID cmd-data    PC -\u0026gt; µC   \u0026lsquo;W\u0026rsquo; = 0x57   off3   off2   off1   off0   ctrl   size   d7   [d6]   \u0026hellip;   [d0]     PC \u0026lt;- µC   \u0026lsquo;W\u0026rsquo; = 0x57   result  -   ​\n off3\u0026hellip;off0: offset-address in bytes (4 Gbyte addressable)\n ctrl: see ctrl size: number of bytes to write (also determines number of data-bytes that follow) d7 \u0026hellip; d0: data-bytes, only number of bytes used are sent (indicated by size)\n result:\n0x00 = ok, value is written\n0x01 = invalid (offset) address\n0x02 = error dereferencing (null-pointer appeared at some dereference)\n  "
+},
+{
+	"uri": "https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/queryregister/",
+	"title": "Query Register (&#39;Q&#39;)",
+	"tags": [],
+	"description": "",
+	"content": "  cmd-ID cmd-data    PC -\u0026gt; uC   \u0026lsquo;Q\u0026rsquo; = 0x51   off3   off2   off1   off0   ctrl   size  -     PC \u0026lt;- uC   \u0026lsquo;Q\u0026rsquo; = 0x51   off3   off2   off1   off0   ctrl   size   d7   [d6]   \u0026hellip;   [d0]   ​\n off3\u0026hellip;off0: offset-address in bytes (4 Gbyte addressable)\n ctrl: see ctrl size: number of bytes to read (also determines number of data-bytes that follow in the reply from µC -\u0026gt; PC) if size = 0, there is an error in reading the specified register d7 \u0026hellip; d0: data-bytes, only number of bytes used are sent (indicated by size)\n  "
+},
+{
+	"uri": "https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/configchannel/",
+	"title": "Config Channel (&#39;C&#39;)",
+	"tags": [],
+	"description": "",
+	"content": "  cmd-ID cmd-data    PC -\u0026gt; µC   \u0026lsquo;C\u0026rsquo; = 0x43   chan   [mode]   [off3]   [off2]   [off1]   [off0]   [ctrl]   [size]     PC \u0026lt;- µC   \u0026lsquo;C\u0026rsquo; = 0x43   chan   mode   [off3]   [off2]   [off1]   [off0]   [ctrl]   [size]     PC \u0026lt;- µC   \u0026lsquo;C\u0026rsquo; = 0x43   chan   mode   ​\n chan: channel-number to config (range 0x00\u0026hellip;0x0F)\nif only channel is sent by PC, it means it wants to query the current config for this channel [mode]:\n0x00 = turn channel off (don’t send any data anymore)\n0x01 = send data when changed (max every sample)\n0x02 = send data low-speed (typically once per sec)\n0x03 = send the value-data once with next update or ‘once’ update\nIf only chan and mode are sent, we only change the mode, and only the mode is returned off3\u0026hellip;off0: offset-address in bytes (4 Gbyte addressable)\n ctrl: see ctrl size: number of bytes to read\n If any of the settings is invalid (like offset or control), the µC replies with {mode off3…off0 ctrl size} all set to 0x00  overview of responses:\n   PC -\u0026gt; µC PC \u0026lt;- µC     chan mode off3…off0 ctrl size chan mode off3…off0 ctrl size   chan chan mode off3…off0 ctrl size   chan mode chan mode    "
+},
+{
+	"uri": "https://demcon.github.io/EDProtocol/",
+	"title": "Embedded Debugger",
+	"tags": [],
+	"description": "",
+	"content": " Introduction There are 4 areas at which embedded software needs debugging:\n Hardware testing\nFor testing specific hardware, we need to write hardware-drivers, through which we can test the hardware. Often we need special test-software that use these drivers.\n Software debugging\nThe development environment is often sufficient for debugging the software. It sometimes also has utilities for standard hardware testing (like default I/O-ports of a µC).\n Application debugging\nAt application-level we even need more sophisticated debugging-tools. In general we need plots of certain internal units (like pressure, temperature, motor-positions, servo-errors, etc) that can be graphically plotted simultaneously.\n Production testing\nProduction testing is close related to hardware testing. Yet it requires a higher degree of automation with growing production volumes.\n  This document describes a general debug-protocol that can be used in all areas, being least applicable for software debugging. It needs implementation at both embedded side as PC-side. The debug-protocol can run over several types of busses, like CAN-bus, serial, Ethernet etc. It is a binary protocol with a message structure.\n"
+},
+{
+	"uri": "https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/decimation/",
+	"title": "Decimation (&#39;D&#39;)",
+	"tags": [],
+	"description": "",
+	"content": "  cmd-ID cmd-data    PC -\u0026gt; µC   \u0026rsquo;D\u0026rsquo; = 0x44   [dec]     PC \u0026lt;- µC   \u0026rsquo;D\u0026rsquo; = 0x44   dec   ​\n set the decimation for generating channel-data\n when [dec] is omitted, the current decimation is returned\n  "
+},
+{
+	"uri": "https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/resettime/",
+	"title": "Reset Time (&#39;T&#39;)",
+	"tags": [],
+	"description": "",
+	"content": "  cmd-ID cmd-data    PC -\u0026gt; µC   \u0026rsquo;T\u0026rsquo; = 0x54   -     PC \u0026lt;- µC   \u0026rsquo;T\u0026rsquo; = 0x54   -   ​\n reset the time that is used for generating time-stamps\n by sending this command with a µC-ID of 0xFF, all slaves are reset simultaneously (approximately), and the time-stamps of all µCs will relate to each other  "
+},
+{
+	"uri": "https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/readchanneldata/",
+	"title": "Read Channel Data (&#39;R&#39;)",
+	"tags": [],
+	"description": "",
+	"content": "  cmd-ID cmd-data    PC -\u0026gt; uC   \u0026lsquo;R\u0026rsquo; = 0x52   trace \n   PC \u0026lt;- uC   \u0026lsquo;R\u0026rsquo; = 0x52   time2   time1   time0   mask1   mask0   d_n   \u0026hellip;   d_0   ​\n trace:\n0 = turn off (µC stops sending channel data)\n1 = turn on (µC starts send channel data continuously)\n2 = once (µC sends debug-data once of channels that are configured as ‘once’)\n time2…time0: 24-bit relative time-stamp; the unit of the time-stamp is given with the GetInfo command\nwith a usual time-stamp unit of 1ms, the relative time-stamp wraps each 4.6 hours which should be sufficient\n mask1…mask0: 16-bit channel mask\nif data contains values for a channel, its corresponding bit is set d_n…d_0: data of all channels that are sent\nhighest channels first\nnbr bytes per channel are determined by the ConfigChannel command\nMSB first for each value\n not having separation characters between the values makes dispatching less trivial, but overhead is dramatically reduced  "
+},
+{
+	"uri": "https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/debugstring/",
+	"title": "Debug String (&#39;S&#39;)",
+	"tags": [],
+	"description": "",
+	"content": "  cmd-ID cmd-data    PC -\u0026gt; uC   \u0026rsquo;S\u0026rsquo; = 0x53   char_n \n \u0026hellip; \n char_0 \n   PC \u0026lt;- uC   \u0026rsquo;S\u0026rsquo; = 0x53   char_n \n \u0026hellip; \n char_0 \n ​\n char_n…char_0: debug-string send by the µC to the PC, and vice-versa it acts like a stdout that the µC can print to (like a printf), and a stdin that the µC can react on (like a getchar) together, it acts like a ‘terminal’  "
+},
+{
+	"uri": "https://demcon.github.io/EDProtocol/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://demcon.github.io/EDProtocol/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

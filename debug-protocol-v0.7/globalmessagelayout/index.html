@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.53" />
+    <meta name="description" content="">
+
+
+    <link rel="shortcut icon" href="https://demcon.github.io/EDProtocol/images/favicon.png" type="image/x-icon" />
+<link rel="icon" href="https://demcon.github.io/EDProtocol/images/favicon.png" type="image/x-icon" />
+    <title>Global message layout :: Embedded Debugger</title>
+
+    
+    <link href="https://demcon.github.io/EDProtocol/css/nucleus.css?1548248005" rel="stylesheet">
+    <link href="https://demcon.github.io/EDProtocol/css/fontawesome-all.min.css?1548248005" rel="stylesheet">
+    <link href="https://demcon.github.io/EDProtocol/css/hybrid.css?1548248005" rel="stylesheet">
+    <link href="https://demcon.github.io/EDProtocol/css/featherlight.min.css?1548248005" rel="stylesheet">
+    <link href="https://demcon.github.io/EDProtocol/css/perfect-scrollbar.min.css?1548248005" rel="stylesheet">
+    <link href="https://demcon.github.io/EDProtocol/css/auto-complete.css?1548248005" rel="stylesheet">
+    <link href="https://demcon.github.io/EDProtocol/css/theme.css?1548248005" rel="stylesheet">
+    <link href="https://demcon.github.io/EDProtocol/css/hugo-theme.css?1548248005" rel="stylesheet">
+    
+      <link href="https://demcon.github.io/EDProtocol/css/theme-blue.css?1548248005" rel="stylesheet">
+    
+
+    <script src="https://demcon.github.io/EDProtocol/js/jquery-2.x.min.js?1548248005"></script>
+
+    <style type="text/css">
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/debug-protocol-v0.7/globalmessagelayout/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <img src="https://demcon.github.io/EDProtocol//demcon.png">
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="https://demcon.github.io/EDProtocol/js/lunr.min.js?1548248005"></script>
+<script type="text/javascript" src="https://demcon.github.io/EDProtocol/js/auto-complete.js?1548248005"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/demcon.github.io\/EDProtocol\/";
+    
+</script>
+<script type="text/javascript" src="https://demcon.github.io/EDProtocol/js/search.js?1548248005"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/" title="Debug protocol V0.7" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/">
+          Debug protocol V0.7
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/" title="Global message layout" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/">
+          Global message layout
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/getinfo/" title="Get Info (&#39;I&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/getinfo/">
+          Get Info (&#39;I&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/getversion/" title="Get version (&#39;V&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/getversion/">
+          Get version (&#39;V&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/writeregister/" title="Write Register (&#39;W&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/writeregister/">
+          Write Register (&#39;W&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/queryregister/" title="Query Register (&#39;Q&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/queryregister/">
+          Query Register (&#39;Q&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/configchannel/" title="Config Channel (&#39;C&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/configchannel/">
+          Config Channel (&#39;C&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/decimation/" title="Decimation (&#39;D&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/decimation/">
+          Decimation (&#39;D&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/resettime/" title="Reset Time (&#39;T&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/resettime/">
+          Reset Time (&#39;T&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/readchanneldata/" title="Read Channel Data (&#39;R&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/readchanneldata/">
+          Read Channel Data (&#39;R&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/debug-protocol-v0.7/globalmessagelayout/debugstring/" title="Debug String (&#39;S&#39;)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/debugstring/">
+          Debug String (&#39;S&#39;)
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='https://demcon.github.io/EDProtocol/'>Embedded Debugger</a> > <a href='https://demcon.github.io/EDProtocol/debug-protocol-v0.7/'>Debug protocol V0.7</a> > Global message layout
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#global-message-layout">Global message layout</a></li>
+<li><a href="#stx-etx-escape-character">STX,ETX, escape character</a>
+<ul>
+<li><a href="#µc">µC</a></li>
+<li><a href="#msg-id">Msg-ID</a></li>
+<li><a href="#cmd-and-cmd-data">Cmd and cmd-data</a></li>
+<li><a href="#error-checking">Error-checking</a></li>
+<li><a href="#debug-channels">Debug-channels</a></li>
+</ul></li>
+<li><a href="#byte-ordering">Byte ordering</a></li>
+<li><a href="#encoding">Encoding</a></li>
+<li><a href="#control-byte">Control byte</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+
+        
+        <div id="body-inner">
+          
+            <h1>Global message layout</h1>
+          
+
+        
+
+
+
+
+<h2 id="global-message-layout">Global message layout</h2>
+
+<p><table class="table table-bordered">
+    <tr>
+        <th>STX</th>
+        <th>µC</th>
+        <th>msg-ID</th>
+        <th>cmd</th>
+        <th>cmd-data</th>
+        <th>CRC</th>
+        <th>ETX</th>
+    </tr>
+    <tr>
+      <td>1 byte </td>
+      <td>1 byte </td>
+      <td>1 byte </td>
+      <td>1 byte </td>
+      <td>&hellip; bytes </td>
+      <td>1 byte </td>
+      <td>1 byte </td>
+    </tr>
+</table>​</p>
+
+<h2 id="stx-etx-escape-character">STX,ETX, escape character</h2>
+
+<p>Detecting and differentiating separate messages is done using the STX and ETX.<br />
+Implementation can use the following easy rules:
+*   STX = 0x55
+* ETX = 0xAA
+*   Receive STX -&gt; ignore all previous packet-bytes
+* Receive ETX -&gt; packet = all bytes since last STX
+* Message = all bytes between last STX and ETX</p>
+
+<p>Each byte in the message can have any binary value.<br />
+In order to uniquely identify STX and ETX, we use an escape character on the message-data to prevent STX and ETX from being sent inside the message-data.<br />
+Implementation can follow these simple rules:
+*   Escape char = 0x66
+*   Encode message-bytes before sending (XOR with escape char):
+    * Replace message-byte “0x55” by 2 bytes: “0x66 0x33”
+    * Replace message-byte “0xAA” by 2 bytes: “0x66 0xCC”
+    * Replace message-byte “0x66” by 2 bytes: “0x66 0x00”
+*   Decode received message-bytes (XOR with escape char):<br />
+    replace 2 bytes “0x66 0x??” by 1 byte: “0x66 XOR 0x??”</p>
+
+<p>The STX, ETX and escape-char are chosen to have a minimum of equal consecutive bits. This minimises bit-stuffing in cases where the transport layer makes use of this (like CAN-bus or wireless communication).</p>
+
+<h3 id="µc">µC</h3>
+
+<p>Since we can have a setup with more than 1 µC, each message starts with a µC-id which identifies to which µC the message is related.<br />
+An id of 0xFF is reserved for accessing all µCs simultaneously. The highest bit identifies the direction:
+*   bit 7 = 1: PC -&gt; µC
+*   bit 7 = 0: PC &lt;- µC</p>
+
+<h3 id="msg-id">Msg-ID</h3>
+
+<p>All messages sent from the PC are given a successive msg-ID.<br />
+This ID is used to ACK the messages by the slaves.<br />
+The slaves ACK each message, by sending at least:
+*   µC
+*   msg-ID
+*   cmd</p>
+
+<p>Msg-ID = 0 is not ACK by the slaves.<br />
+This msg-ID can be used by the PC when sending a cmd to all slaves at once.<br />
+However, by using a msg-ID != 0 with a global cmd, makes all present µCs ACK the message, which can be a safer route.</p>
+
+<p>Messages sent by the µC are not ACK by the PC, and are therefore sent with msg-ID = 0</p>
+
+<h3 id="cmd-and-cmd-data">Cmd and cmd-data</h3>
+
+<p>Each message has a cmd, followed by cmd-data. The cmd identifies the type of message. The amount and type of cmd-data differs per cmd, and can also be 0.
+The cmds are defined separately.</p>
+
+<p>Command-data may consist of several parameter-values. These may be separated by a ‘record separator’ RS = 0x33. If a record-separator is used, it is described in the command.</p>
+
+<h3 id="error-checking">Error-checking</h3>
+
+<p>Every message has a CRC-check in order to detect transmission failures. The STX and ETX are excluded from the CRC-calculations (if STX or ETX are not received correctly, the message is lost anyway, since we are not able to detect it anyway).
+We choose an 8-bit CRC with the following polynomial (CRC-8 Dallas/Maxim):<br />
+     CRC = x<sup>8</sup> + x<sup>5</sup> + x<sup>4</sup> + x<sup>0</sup></p>
+
+<p>If a CRC-check fails, the message is simply discarded. If a message is important, it is indicated in the protocol that the receiver should send a response. If such a response times out at the sender-side, it can be resent. After a multiple or time-outs, the receiver can be indicated as ‘connection lost’.</p>
+
+<h3 id="debug-channels">Debug-channels</h3>
+
+<p>Each µC will have 16 so called ‘debug-channels’. A debug-channel is capable of sending a 1-dimensional value (for example a bool, byte, int or double) from the µC to the PC. Each debug-channel can be independently configured through the protocol. This is done by the PC. The PC determines what variable is sent over which channel, and when.</p>
+
+<p>At start-up, we must first initialise/synchronise the debugger softwares on both sides of the communication channel (i.e. embedded sw and pc sw). The following information is exchanged:
+–   version of the debugger software
+–   version of the application software
+–   sizes and byte orientation of the basic types</p>
+
+<p>After that, the pc software can configure and enable/disable debug-channels. The commands use a ‘send-response’ format to ensure safe communication. After enabling, the embedded sw send data as configured without being queried or ack. This one-way sending minimises overhead, leading to maximum throughput. Furthermore, it is assumed that message losses are not critical for debug-data. All this is illustrated by the sequence diagram below.</p>
+
+<p><img src="https://demcon.github.io/EDProtocol/SequenceDiagram.png" alt="Sequence Diagram" /></p>
+
+<h2 id="byte-ordering">Byte ordering</h2>
+
+<p>Multi-byte values are sent in ‘little endian’ ordering (standard Intel format), i.e. ‘least significant byte’ first. So a 4-byte value 0x12345678 is sent as {0x78, 0x56, 0x34, 0x12}.</p>
+
+<p>In multiple commands a Name is send, this name are send using the UTF-8 encoding.</p>
+
+<h2 id="encoding">Encoding</h2>
+
+<h2 id="control-byte">Control byte</h2>
+
+<p>The control byte is used in multiple commands, such as writeregister and contains information about the register, e.g. read/write, deref, etc.<br />
+bit7…bit4: base-address to use (bit7=read/write, bit6=hand/Simulink, bit4=offset/index):
+&nbsp;&nbsp;&nbsp;&nbsp;0000: read hand-written variable, add offset to base-address (‘&amp;theApp’)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;0001: read hand-written variable, offset is index of hard-coded variable<br />
+&nbsp;&nbsp;&nbsp;&nbsp;0100: read Simulink signal, add offset to Simulink signal base address (‘&amp;g_B’)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;0101: read Simulink signal, offset is index of hard-coded Simulink-output
+&nbsp;&nbsp;&nbsp;&nbsp;0111: read from to absolute memory-address
+&nbsp;&nbsp;&nbsp;&nbsp;1000: write to hand-written variable, add offset to base-address (‘&amp;theApp’)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;1001: write to hand-written variable, offset is index of hard-coded variable<br />
+&nbsp;&nbsp;&nbsp;&nbsp;1100: write to Simulink-parameter, add offset to parameter base address (‘&amp;g_P’)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;1101: write to Simulink-parameter, offset is index of hard-coded Simulink-input<br />
+&nbsp;&nbsp;&nbsp;&nbsp;1111: write to absolute memory-address<br />
+bit3…bit0: pointer-depth, how deep to dereference the offset-address examples:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;0x00: memory-location contains variable value<br />
+&nbsp;&nbsp;&nbsp;&nbsp;0x01: memory-location contains single pointer<br />
+&nbsp;&nbsp;&nbsp;&nbsp;0x02: memory-location contains double pointer (dereference twice)</p>
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/" title="Debug protocol V0.7"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/getinfo/" title="Get Info (&#39;I&#39;)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="https://demcon.github.io/EDProtocol/js/clipboard.min.js?1548248005"></script>
+    <script src="https://demcon.github.io/EDProtocol/js/perfect-scrollbar.min.js?1548248005"></script>
+    <script src="https://demcon.github.io/EDProtocol/js/perfect-scrollbar.jquery.min.js?1548248005"></script>
+    <script src="https://demcon.github.io/EDProtocol/js/jquery.sticky.js?1548248005"></script>
+    <script src="https://demcon.github.io/EDProtocol/js/featherlight.min.js?1548248005"></script>
+    <script src="https://demcon.github.io/EDProtocol/js/html5shiv-printshiv.min.js?1548248005"></script>
+    <script src="https://demcon.github.io/EDProtocol/js/highlight.pack.js?1548248005"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://demcon.github.io/EDProtocol/js/modernizr.custom.71422.js?1548248005"></script>
+    <script src="https://demcon.github.io/EDProtocol/js/learn.js?1548248005"></script>
+    <script src="https://demcon.github.io/EDProtocol/js/hugo-learn.js?1548248005"></script>
+
+    <link href="https://demcon.github.io/EDProtocol/mermaid/mermaid.css?1548248005" type="text/css" rel="stylesheet" />
+    <script src="https://demcon.github.io/EDProtocol/mermaid/mermaid.js?1548248005"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://demcon.github.io/EDProtocol/debug-protocol-v0.7/</loc>
+    <lastmod>2018-10-31T15:55:25+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/getinfo/</loc>
+    <lastmod>2018-10-31T15:55:25+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/</loc>
+    <lastmod>2018-10-31T15:55:25+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/getversion/</loc>
+    <lastmod>2018-10-31T15:55:25+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/writeregister/</loc>
+    <lastmod>2018-10-31T15:55:25+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/queryregister/</loc>
+    <lastmod>2018-10-31T15:55:25+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/configchannel/</loc>
+    <lastmod>2018-10-31T15:55:25+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://demcon.github.io/EDProtocol/</loc>
+    <lastmod>2018-10-31T15:55:25+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/decimation/</loc>
+    <lastmod>2018-10-31T15:55:25+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/resettime/</loc>
+    <lastmod>2018-10-31T15:55:25+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/readchanneldata/</loc>
+    <lastmod>2018-10-31T15:55:25+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://demcon.github.io/EDProtocol/debug-protocol-v0.7/globalmessagelayout/debugstring/</loc>
+    <lastmod>2018-10-31T15:55:25+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://demcon.github.io/EDProtocol/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://demcon.github.io/EDProtocol/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
